@@ -22,7 +22,7 @@ class BinarySearchTree {
 		while (!!cur) {
 			par = cur;
 			if (cur.value === key) {
-				alert('can not add same number');
+				console.log('can not add same number');
 				return;
 			}
 			if (cur.value > key) {
@@ -43,6 +43,23 @@ class BinarySearchTree {
 			Math.random() * (Math.random() > 0.5 ? 101 : -101)
 		);
 		this.insert(random);
+	}
+
+	countOddAndEven() {
+		let cur = this.root;
+		let odd = 0;
+		let even = 0;
+		function dis(root) {
+			if (!root) {
+				return;
+			}
+			dis(root.children[0]);
+			if (root.value % 2 === 0) odd++;
+			if (root.value % 2 !== 0) even++;
+			dis(root.children[1]);
+		}
+		dis(cur);
+		return { odd, even };
 	}
 }
 export default BinarySearchTree;
